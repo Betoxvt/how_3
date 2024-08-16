@@ -36,8 +36,14 @@ while True:
         bomba = bool(True)
 # Abaixo o loop que mantém alarme e/ou bomba ligados enquanto o nível não baixar para o limite de parar
     while alarme or bomba:
+        arduino = bool(True)
+        print('Sistema ON')
         sleep(2)
         distancia = int(input("Distância do nível d'água: "))
+        if distancia <= aciona_alarme:
+            alarme = bool(True)
+        if distancia <= aciona_bomba:
+            bomba = bool(True)
         if alarme:
             if distancia < para_alarme:
                 print('Alarme ON')
