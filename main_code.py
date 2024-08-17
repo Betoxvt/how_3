@@ -1,61 +1,64 @@
 # Criar um programa de um sistema que meça a distância do nível d'água em cm. Quando a distância for menor que 150cm irá
 # acionar a bomba que vai aumentar essa distância (bombeando a água para fora) até 190cm, que será o gatilho para
-# parar a bomba. Se essa distância chegar a menos de 120cm um alarme será acionado até que o nível volte para uma
+# parar a bomba. Se essa distância chegar a menos de 120cm um alerta será acionado até que o nível volte para uma
 # distância maior que 150cm.
-from time import sleep  # Para colocar pausas entre as medições, evitar sobrecarregar o sistema.
+# Agora nesta segunda parte, vamos adicionar o sensor mecânico tipo bóia. Importante saber como calibrar a boia para
+# atuar em paralelo com o sensor ultrassônico, de preferência com os mesmos valores numéricos.
+# Aqui a lógica busca priorizar acionar a bomba e o alerta se qualquer um dos sensores atingir o limiar de gatilho.
+# Apenas desativando os atuadores quando ambos estabilizarem no limite calibrado para parar.
 
-# Calibragem dos limites de distâncias entre o sensor e o nível d'água
+# Valores dos limites de acionamento e parada, calibrar conforme a embarcação.
 aciona_bomba = 150
-aciona_alarme = 120
+aciona_alerta = 120
 para_bomba = 190
-para_alarme = aciona_bomba
+para_alerta = 150
 
-# Variáveis para indicadores de funcionamento
-arduino = bool()
-bomba = bool()
-alarme = bool()
+
+# Acende as luzes
+arduino = bool(True)
+bomba = bool(True)
+alerta = bool(True)
 
 # Programa em loop enquanto o arduino ficar ligado
 while True:
     arduino = bool(True)
     print('Sistema ON')
-    sleep(2)  # Pausa
-    distancia = int(input("Distância do nível d'água: "))  # Lê o sinal
+# Leituras iniciais
+    distancia = int(input("Distância do nível d'água: "))  # Lê o sinal do sensor ultrassônico
+    sinal_flex = int(input("Sinal do flex (bóia): "))  # Lê o sinal do sensor flex (bóia)
 # Abaixo seguem as condicionais de avaliação
-    if distancia > aciona_alarme:
-        print('Alarme OFF')
-        alarme = bool(False)
+    if distancia > aciona_alerta and sinal_flex > aciona_alerta:
+        print('alerta OFF')
+        alerta = bool(False)
     else:
-        print('Alarme ON')
-        alarme = bool(True)
-    if distancia > aciona_bomba:
+        print('alerta ON')
+        alerta = bool(True)
+    if distancia > aciona_bomba and sinal_flex > aciona_bomba:
         print('Bomba OFF')
         bomba = bool(False)
     else:
         print('Bomba ON')
         bomba = bool(True)
-# Abaixo o loop que mantém alarme e/ou bomba ligados enquanto o nível não baixar para o limite de parar
-    while alarme or bomba:
-        arduino = bool(True)
-        print('Sistema ON')
-        sleep(2)
+# Abaixo o loop que mantém alerta e/ou bomba ligados enquanto o nível não baixar para o limite de parar
+    while alerta or bomba:
         distancia = int(input("Distância do nível d'água: "))
-        if distancia <= aciona_alarme:
-            alarme = bool(True)
-        if distancia <= aciona_bomba:
+        sinal_flex = int(input("Sinal do flex (bóia): "))
+        if distancia <= aciona_alerta or sinal_flex <= aciona_alerta:
+            alerta = bool(True)
+        if distancia <= aciona_bomba or sinal_flex <= aciona_bomba:
             bomba = bool(True)
-        if alarme:
-            if distancia < para_alarme:
-                print('Alarme ON')
-            if distancia >= para_alarme:
-                print('Alarme OFF')
-                alarme = bool(False)
+        if alerta:
+            if distancia < para_alerta or sinal_flex < para_alerta:
+                print('alerta ON')
+            if distancia >= para_alerta and sinal_flex >= para_alerta:
+                print('alerta OFF')
+                alerta = bool(False)
         else:
-            print('Alarme OFF')
+            print('alerta OFF')
         if bomba:
-            if distancia < para_bomba:
+            if distancia < para_bomba or sinal_flex < para_bomba:
                 print('Bomba ON')
-            if distancia >= para_bomba:
+            if distancia >= para_bomba and sinal_flex >= para_bomba:
                 print('Bomba OFF')
                 bomba = bool(False)
         else:
