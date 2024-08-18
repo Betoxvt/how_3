@@ -2,7 +2,11 @@
 
 ## Protótipo ainda em desenvolvimento.
 * Falta o filtro passa-baixa ou módulo anti-slosh
-* Colocar a intermitência pros sinais de alerta (relay??)
+* Colocar a intermitência pros sinais de alerta, relé térmico?
+* Criar a calibração exclusiva do flex sensor para melhorar a escala do conjunto com o ultrassônico
+* Detalhar os circuitos
+* Resumo e abstract
+* Testar se é necessário um relé para o sistema de alerta (acho que não)
 
 ## Problema e solução
 Para solucionar o problema da entrada de água em porões de embarcações, foi projetado um sistema automático de bombeamento prático e eficiente. A utilização de dois tipos de sensores, digital e analógico, em conjunto com um algoritmo robusto, garante a detecção precisa do nível da água e o acionamento rápido da bomba, minimizando os riscos de danos à embarcação. A solução proposta utiliza uma estratégia de redundância de sensores, para detectar com precisão o nível da água e garantir o funcionamento contínuo da bomba e do sistema de alerta de falha, mesmo em situações críticas.
