@@ -35,6 +35,7 @@ O coração desse sistema é o microcontrolador Arduino, que garante a confiabil
 
 ## Projeto
 Para criar o protótipo do projeto foi utilizado o simulador TinkerCad (www.tinkercad.com), lá estão presentes diversos componentes eletrônicos para construir os circuitos incluindo o microcontrolador Arduino Uno R3, sensor ultrassônico de distância tipo PING (3 pinos), sensor Flex, motor elétrico, LEDs, buzzer (piezo) entre outros. Os sensores deste projeto são o ultrassônico e o flex (simulando a boia), os atuadores são o motor elétrico (simulando a bomba de porão), luzes LED e Piezo buzzer para o subsistema de alerta.
+![Protótipo](https://github.com/Betoxvt/how_3/blob/main/prototitpo.png)
 
 1. Circuitos:
 Para montar os circuitos foi utilizada uma placa de ensaio assim as conexões dos pinos, cabos e componentes ficou mais organizada.  Abaixo, na figura 3, podemos ver em detalhes todo o circuito na vista esquemática. Algumas adaptações foram feitas no simulador por causa do limite de componentes disponíveis, para a bateria 12v uma fonte ajustada para 12v e 5a e para o sensor de boia o sensor flex foi utilizado.
