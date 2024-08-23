@@ -1,25 +1,53 @@
 # Sistema automático de bomba de porão e alerta de falha
 
+## Resumo / Abstract
+
+Abstract: This document is a report, a requirement of the Hands-on Work III course. In it, the author describes how they developed a project for a prototype of an automatic bilge pump system and problem alert. The objective proposed by Professor Rodrigo Ramos Martins is for students to develop an automation project that includes at least 2 sensors and 2 actuators using Arduino in the TinkerCAD simulator. 
+
+Resumo: Este documento é um relatório, requisito da disciplina Hands on Work III. Neste o autor descreve como fez um projeto para um protótipo de um sistema automático para bomba de porão e alerta de problemas. O objetivo proposto pelo professor Rodrigo Ramos Martins é de que os alunos desenvolvam um projeto de automação que inclua ao menos 2 sensores e 2 atuadores utilizando o Arduino no simulador TinkerCAD. 
+
 ## Protótipo ainda em desenvolvimento.
-* Falta implementar o sistema com  a boia mecânica.
-* Falta calibrar as medições, os números funcionam... mas creio que precisa de algo mais realista, claro que a calibragem depende da embarcação.
-* Quando estiver tudo planejado vou criar o protótipo no Tinkercad.
+Considerações para a parte 2:
 
-## Problema e solução
+1. Falta o filtro passa-baixa ou módulo anti-slosh
+- Não considerei necessário na simulação, contudo em uma situação real deveria ser considerado
+2. Colocar a intermitência pros sinais de alerta
+- Resolvido pelo código no arduino inserindo WAIT 1 sec nas estruturas que acionam o alerta
+3. Criar a calibração exclusiva do flex sensor para melhorar a escala do conjunto com o ultrassônico
+- Alterado o resistor para 10K Ohms > analisando outros projetos este parece ser o mais utilizado para este tipo de sensor.
+- CRIADAS novas variaveis de limites específicas para este sensor
+- Com base nos valores observados no monitor serial as variaveis limites foram definidas em:
+* ACIONA_BOMBA_FLEX = 880
+* ACIONA_ALERTA_FLEX = 930
+* PARA_BOMBA_FLEX = 770
+* PARA_ALERTA_FLEX = 880
+4. Detalhar os circuitos
+- As imagens detalham melhor.
+5. Testar se é necessário um relé para o sistema de alerta (acho que não)
+- Não é, a não ser que para o alerta sonoro se use outro tipo de autofalante.
+
+## Problema
+A entrada de água nos porões de uma embarcação pode ter consequências graves, como instabilidade, perda de flutuabilidade, curto-circuitos elétricos e, em casos extremos, o naufrágio. Para evitar tais acidentes, é essencial contar com sistemas de detecção e alarme confiáveis, bem como com medidas preventivas adequadas. A automação, nesse contexto, representa uma ferramenta poderosa para garantir a segurança e a integridade das embarcações, além de otimizar as operações a bordo.
+
+## Solução
 Para solucionar o problema da entrada de água em porões de embarcações, foi projetado um sistema automático de bombeamento prático e eficiente. A utilização de dois tipos de sensores, digital e analógico, em conjunto com um algoritmo robusto, garante a detecção precisa do nível da água e o acionamento rápido da bomba, minimizando os riscos de danos à embarcação. A solução proposta utiliza uma estratégia de redundância de sensores, para detectar com precisão o nível da água e garantir o funcionamento contínuo da bomba e do sistema de alerta de falha, mesmo em situações críticas.
-
 O coração desse sistema é o microcontrolador Arduino, que garante a confiabilidade e a robustez da operação. Ele processa os dados dos sensores em tempo real, tomando decisões rápidas e precisas para acionar a bomba quando necessário. Além disso, o Arduino é conhecido por sua resistência a ambientes hostis, o que o torna ideal para aplicações marítimas.
 
 ## Projeto
-1. Bomba automática
-* Sensores: Nível de água. Sensor Ultrassônico e Boia mecânica (Potenciômetro)
-* Atuador: Eletro bomba (Motor elétrico)
+Para criar o protótipo do projeto foi utilizado o simulador TinkerCad (www.tinkercad.com), lá estão presentes diversos componentes eletrônicos para construir os circuitos incluindo o microcontrolador Arduino Uno R3, sensor ultrassônico de distância tipo PING (3 pinos), sensor Flex, motor elétrico, LEDs, buzzer (piezo) entre outros. Os sensores deste projeto são o ultrassônico e o flex (simulando a boia), os atuadores são o motor elétrico (simulando a bomba de porão), luzes LED e Piezo buzzer para o subsistema de alerta.
 
-O sistema de bombeamento será ativado quando o sinal proveniente do sensor de nível, filtrado por um filtro passa-baixa para eliminar ruídos de alta frequência, ultrapassar o limiar estabelecido. O sinal será lido pelo arduino, quando atingir a distância de 150cm em relação ao nível d'água ele vai ativar o sistema da bomba que permanecerá ativo até que essa distância aumente para 190cm.
-O sistema da bomba contém um relay que é ativado pelo sinal do arduino. este reLê é alimentado pela bateria da embarcação, que quando fecha passa a alimentar a bomba.
+1. Circuitos:
+Para montar os circuitos foi utilizada uma placa de ensaio assim as conexões dos pinos, cabos e componentes ficou mais organizada.  Abaixo, na figura 3, podemos ver em detalhes todo o circuito na vista esquemática. Algumas adaptações foram feitas no simulador por causa do limite de componentes disponíveis, para a bateria 12v uma fonte ajustada para 12v e 5a e para o sensor de boia o sensor flex foi utilizado.
+A alimentação da bomba de porão, para ser eficaz, é feita por um relé ligado à bateria que passa a energia para a bomba quando acionado pelo sinal do Arduino.
 
-2. Alerta de falha
-* Sensor: Nível de água. Sensor Ultrassônico e Boia mecânica (Potenciômetro)
-* Atuadores: Luz (led) e Som (piezo)
+2. Lógica e código do programa:
+Após a visualização de como seria o desenho do sistema, seus componentes, disposição e conexões o protótipo ficou mais tangível e o próximo passo foi de escrever a lógica para o controlador. O código foi desenvolvido em linguagem Python e testado, até chegar ao refinamento necessário para que os sistemas fossem acionados e parados conforme a ideia inicial, também priorizando acionar e manter os subsistemas funcionando mesmo se apenas um dos sinais dos sensores estiver marcando o limite definido.
+Este código foi transcrito manualmente para o simulador que usa linguagem C++, através da ferramenta de código em blocos do TinkerCad, visível na Figura 1. Realmente uma ferramenta muito prática que permite os usuários escreverem o código sem saber C++.
+Com o código já inserido no simulador, alguns testes e ajustes foram realizados para conseguir o sinal intermitente do alerta, adicionando pausas com o bloco WAIT 1 sec.
 
-O sistema de alerta opera de forma similar ao sistema de bombeamento, porém, é acionado quando a distância entre o sensor e o nível d'água chega em 120cm e cessando quando essa distância chegar a 150cm. Quando o sistema de alerta está ativo, o microcontrolador Arduino controla a intermitência dos LEDs e piezoelétricos, proporcionando uma sinalização visual e sonora clara e eficiente.
+3. Calibração:
+Com a estrutura lógica e os componentes em ordem, foram executados vários testes, observando as impressões do monitor serial para chegar ao resultado satisfatório para este primeiro protótipo. Os limites definidos para cada sensor foram armazenados em constantes no código do arduino. Para o sensor ultrassônico de distância, estabelecendo acionar o alerta em 120cm, parar o alerta em 150cm, acionar a bomba em 150cm e parar a bomba em 190cm. Para o sensor flex ficaram definidas acionar o alerta em 930, parar o alerta em 880, acionar a bomba em 880 e parar a bomba em 770. No código estes valores podem ser alterados conforme a embarcação.
+
+4. Simulador 
+
+[Link para acessar o protótipo no simulador](https://www.tinkercad.com/things/4ZVEsjVhmGu-sistema-automatico-com-alerta )
