@@ -1,4 +1,4 @@
-# Sistema automático de bomba de porão e alerta de falha
+# Sistema automático para bomba de porão e alerta de problemas em embarcações - com Arduino 
 
 ## Resumo / Abstract
 
@@ -6,31 +6,11 @@ Abstract: This document is a report, a requirement of the Hands-on Work III cour
 
 Resumo: Este documento é um relatório, requisito da disciplina Hands on Work III. Neste o autor descreve como fez um projeto para um protótipo de um sistema automático para bomba de porão e alerta de problemas. O objetivo proposto pelo professor Rodrigo Ramos Martins é de que os alunos desenvolvam um projeto de automação que inclua ao menos 2 sensores e 2 atuadores utilizando o Arduino no simulador TinkerCAD. 
 
-## Protótipo ainda em desenvolvimento.
-Considerações para a parte 2:
-
-1. Falta o filtro passa-baixa ou módulo anti-slosh
-- Não considerei necessário na simulação, contudo em uma situação real deveria ser considerado
-2. Colocar a intermitência pros sinais de alerta
-- Resolvido pelo código no arduino inserindo WAIT 1 sec nas estruturas que acionam o alerta
-3. Criar a calibração exclusiva do flex sensor para melhorar a escala do conjunto com o ultrassônico
-- Alterado o resistor para 10K Ohms > analisando outros projetos este parece ser o mais utilizado para este tipo de sensor.
-- CRIADAS novas variaveis de limites específicas para este sensor
-- Com base nos valores observados no monitor serial as variaveis limites foram definidas em:
-* ACIONA_BOMBA_FLEX = 880
-* ACIONA_ALERTA_FLEX = 930
-* PARA_BOMBA_FLEX = 770
-* PARA_ALERTA_FLEX = 880
-4. Detalhar os circuitos
-- As imagens detalham melhor.
-5. Testar se é necessário um relé para o sistema de alerta (acho que não)
-- Não é, a não ser que para o alerta sonoro se use outro tipo de autofalante.
-
 ## Problema
 A entrada de água nos porões de uma embarcação pode ter consequências graves, como instabilidade, perda de flutuabilidade, curto-circuitos elétricos e, em casos extremos, o naufrágio. Para evitar tais acidentes, é essencial contar com sistemas de detecção e alarme confiáveis, bem como com medidas preventivas adequadas. A automação, nesse contexto, representa uma ferramenta poderosa para garantir a segurança e a integridade das embarcações, além de otimizar as operações a bordo.
 
 ## Solução
-Para solucionar o problema da entrada de água em porões de embarcações, foi projetado um sistema automático de bombeamento prático e eficiente. A utilização de dois tipos de sensores, digital e analógico, em conjunto com um algoritmo robusto, garante a detecção precisa do nível da água e o acionamento rápido da bomba, minimizando os riscos de danos à embarcação. A solução proposta utiliza uma estratégia de redundância de sensores, para detectar com precisão o nível da água e garantir o funcionamento contínuo da bomba e do sistema de alerta de falha, mesmo em situações críticas.
+Para solucionar o problema da entrada de água em porões de embarcações, foi projetado um sistema automático de bombeamento prático e eficiente. A utilização de dois tipos de sensores, digital e analógico, em conjunto com um algoritmo robusto, garante a detecção precisa do nível da água e o acionamento rápido da bomba, minimizando os riscos de danos à embarcação. A solução proposta utiliza uma estratégia de redundância de sensores, para detectar com precisão o nível da água e garantir o funcionamento contínuo da bomba e do sistema de alerta de problemas, mesmo em situações críticas.
 O coração desse sistema é o microcontrolador Arduino, que garante a confiabilidade e a robustez da operação. Ele processa os dados dos sensores em tempo real, tomando decisões rápidas e precisas para acionar a bomba quando necessário. Além disso, o Arduino é conhecido por sua resistência a ambientes hostis, o que o torna ideal para aplicações marítimas.
 
 ## Projeto
@@ -52,3 +32,9 @@ Com a estrutura lógica e os componentes em ordem, foram executados vários test
 4. Simulador 
 
 [Link para acessar o protótipo no simulador](https://www.tinkercad.com/things/4ZVEsjVhmGu-sistema-automatico-com-alerta )
+
+## Considerações Finais 
+
+Durante o desenvolvimento deste projeto pude aprender, de maneira introdutória, sobre a automação utilizando o Arduino. Apesar de usar apenas uma simulação no TinkerCAD pude entender mais sobre a programação e circuitos para um sistema automático com sensores e atuadores.
+Apesar de basicamente o projeto funcionar, acredito que seria necessário algum sistema de amortecimento para as medições, pois com o balançar do barco o nível da água no porão certamente sofrerá oscilações e, portanto, afetará o funcionamento do sistema.
+E finalmente, dependendo das luzes e dos autofalantes utilizados no sistema de alerta, uma alimentação ligada a bateria do barco e acionada por relé pode ser necessária. Usaria o mesmo método que foi apresentado para a bomba de porão. 
