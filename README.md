@@ -4,7 +4,9 @@
 
 Abstract: This document is a report, a requirement of the Hands-on Work III course. In it, the author describes how they developed a project for a prototype of an automatic bilge pump system and problem alert. The objective proposed by Professor Rodrigo Ramos Martins is for students to develop an automation project that includes at least 2 sensors and 2 actuators using Arduino in the TinkerCAD simulator. 
 
-Resumo: Este documento é um relatório, requisito da disciplina Hands on Work III. Neste o autor descreve como fez um projeto para um protótipo de um sistema automático para bomba de porão e alerta de problemas. O objetivo proposto pelo professor Rodrigo Ramos Martins é de que os alunos desenvolvam um projeto de automação que inclua ao menos 2 sensores e 2 atuadores utilizando o Arduino no simulador TinkerCAD. 
+Resumo: Este documento é um relatório, requisito da disciplina Hands on Work III. Neste o autor descreve como fez um projeto para um protótipo de um sistema automático para bomba de porão e alerta de problemas. O objetivo proposto pelo professor Rodrigo Ramos Martins é de que os alunos desenvolvam um projeto de automação que inclua ao menos 2 sensores e 2 atuadores utilizando o Arduino no simulador TinkerCAD.
+
+### Falta um protótipo em 3D?
 
 ## Problema
 A entrada de água nos porões de uma embarcação pode ter consequências graves, como instabilidade, perda de flutuabilidade, curto-circuitos elétricos e, em casos extremos, o naufrágio. Para evitar tais acidentes, é essencial contar com sistemas de detecção e alarme confiáveis, bem como com medidas preventivas adequadas. A automação, nesse contexto, representa uma ferramenta poderosa para garantir a segurança e a integridade das embarcações, além de otimizar as operações a bordo.
@@ -14,7 +16,7 @@ Para solucionar o problema da entrada de água em porões de embarcações, foi 
 O coração desse sistema é o microcontrolador Arduino, que garante a confiabilidade e a robustez da operação. Ele processa os dados dos sensores em tempo real, tomando decisões rápidas e precisas para acionar a bomba quando necessário. Além disso, o Arduino é conhecido por sua resistência a ambientes hostis, o que o torna ideal para aplicações marítimas.
 
 ## Projeto
-Para criar o protótipo do projeto foi utilizado o simulador TinkerCad (www.tinkercad.com), lá estão presentes diversos componentes eletrônicos para construir os circuitos incluindo o microcontrolador Arduino Uno R3, sensor ultrassônico de distância tipo PING (3 pinos), sensor Flex, motor elétrico, LEDs, buzzer (piezo) entre outros. Os sensores deste projeto são o ultrassônico e o flex (simulando a boia), os atuadores são o motor elétrico (simulando a bomba de porão), luzes LED e Piezo buzzer para o subsistema de alerta.
+Para criar o protótipo do projeto foi utilizado o simulador TinkerCad (www.tinkercad.com), lá estão presentes diversos componentes eletrônicos para construir os circuitos incluindo o microcontrolador Arduino Uno R3, sensor ultrassônico de distância tipo PING (3 pinos), sensor Flex, motor elétrico, LEDs, buzzer (piezo) entre outros. Os sensores deste projeto são o ultrassônico e o flex (simulando o sensor de boia), os atuadores são o motor elétrico (simulando a bomba de porão), luzes LED e Piezo buzzer para o subsistema de alerta. O sensor de boia, aqui simulado pelo sensor flex, na realidade funciona como um potenciômetro. Uma boia, acoplada a uma haste, move um contato deslizante ao longo de uma trilha resistiva. Conforme o nível da água sobe, a posição do contato varia, alterando a resistência elétrica e gerando um sinal proporcional ao nível.
 ![Protótipo](https://github.com/Betoxvt/how_3/blob/main/prototitpo.png)
 
 1. Circuitos:
@@ -37,4 +39,5 @@ Com a estrutura lógica e os componentes em ordem, foram executados vários test
 
 Durante o desenvolvimento deste projeto pude aprender, de maneira introdutória, sobre a automação utilizando o Arduino. Apesar de usar apenas uma simulação no TinkerCAD pude entender mais sobre a programação e circuitos para um sistema automático com sensores e atuadores.
 Apesar de basicamente o projeto funcionar, acredito que seria necessário algum sistema de amortecimento para as medições, pois com o balançar do barco o nível da água no porão certamente sofrerá oscilações e, portanto, afetará o funcionamento do sistema.
-E finalmente, dependendo das luzes e dos autofalantes utilizados no sistema de alerta, uma alimentação ligada a bateria do barco e acionada por relé pode ser necessária. Usaria o mesmo método que foi apresentado para a bomba de porão. 
+E finalmente, dependendo das luzes e dos autofalantes utilizados no sistema de alerta, uma alimentação ligada a bateria do barco e acionada por relé pode ser necessária. Usaria o mesmo método que foi apresentado para a bomba de porão.
+No futuro pode-se estudar outras funções para o sistema, como envio de sinal de S.O.S automático ou de monitoramento via internet por satélite, podendo ter a localização GPS integrada. 
