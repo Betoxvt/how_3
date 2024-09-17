@@ -17,6 +17,7 @@ O coração desse sistema é o microcontrolador Arduino, que garante a confiabil
 
 ## Projeto
 Para criar o protótipo do projeto foi utilizado o simulador TinkerCad (www.tinkercad.com), lá estão presentes diversos componentes eletrônicos para construir os circuitos incluindo o microcontrolador Arduino Uno R3, sensor ultrassônico de distância tipo PING (3 pinos), sensor Flex, motor elétrico, LEDs, buzzer (piezo) entre outros. Os sensores deste projeto são o ultrassônico e o flex (simulando o sensor de boia), os atuadores são o motor elétrico (simulando a bomba de porão), luzes LED e Piezo buzzer para o subsistema de alerta. O sensor de boia, aqui simulado pelo sensor flex, na realidade funciona como um potenciômetro. Uma boia, acoplada a uma haste, move um contato deslizante ao longo de uma trilha resistiva. Conforme o nível da água sobe, a posição do contato varia, alterando a resistência elétrica e gerando um sinal proporcional ao nível.
+
 ![Protótipo](https://github.com/Betoxvt/how_3/blob/main/prototitpo.png)
 
 1. Circuitos:
