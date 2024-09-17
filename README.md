@@ -23,12 +23,10 @@ Para criar o protótipo do projeto foi utilizado o simulador TinkerCad (www.tink
 
 1. Circuitos:
 Para montar os circuitos foi utilizada uma placa de ensaio assim as conexões dos pinos, cabos e componentes ficou mais organizada. Algumas adaptações foram feitas no simulador por causa do limite de componentes disponíveis, para a bateria 12v uma fonte ajustada para 12v e 5a e para o sensor de boia o sensor flex foi utilizado.
-
 A alimentação da bomba de porão, para ser eficaz, é feita por um relé ligado à bateria que passa a energia para a bomba quando acionado pelo sinal do Arduino.
 
 3. Lógica e código do programa:
 Após a visualização de como seria o desenho do sistema, seus componentes, disposição e conexões o protótipo ficou mais tangível e o próximo passo foi de escrever a lógica para o controlador. O código foi desenvolvido em linguagem Python e testado, até chegar ao refinamento necessário para que os sistemas fossem acionados e parados conforme a ideia inicial, também priorizando acionar e manter os subsistemas funcionando mesmo se apenas um dos sinais dos sensores estiver marcando o limite definido.
-
 Este código foi transcrito manualmente para o simulador que usa linguagem C++, através da ferramenta de código em blocos do TinkerCad. Realmente uma ferramenta muito prática que permite os usuários escreverem o código sem saber C++.
 Com o código já inserido no simulador, alguns testes e ajustes foram realizados para conseguir o sinal intermitente do alerta, adicionando pausas com o bloco WAIT 1 sec.
 
