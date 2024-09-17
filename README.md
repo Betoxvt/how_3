@@ -1,12 +1,12 @@
 # Sistema automático para bomba de porão e alerta de problemas em embarcações - com Arduino 
 
+### Funciona no simulador, porém há que estudar melhor os pinos e suas funções. Rever para aplicar em um projeto real.
+
 ## Resumo / Abstract
 
 Abstract: This document is a report, a requirement of the Hands-on Work III course. In it, the author describes how they developed a project for a prototype of an automatic bilge pump system and problem alert. The objective proposed by Professor Rodrigo Ramos Martins is for students to develop an automation project that includes at least 2 sensors and 2 actuators using Arduino in the TinkerCAD simulator. 
 
 Resumo: Este documento é um relatório, requisito da disciplina Hands on Work III. Neste o autor descreve como fez um projeto para um protótipo de um sistema automático para bomba de porão e alerta de problemas. O objetivo proposto pelo professor Rodrigo Ramos Martins é de que os alunos desenvolvam um projeto de automação que inclua ao menos 2 sensores e 2 atuadores utilizando o Arduino no simulador TinkerCAD.
-
-### Falta um protótipo em 3D?
 
 ## Problema
 A entrada de água nos porões de uma embarcação pode ter consequências graves, como instabilidade, perda de flutuabilidade, curto-circuitos elétricos e, em casos extremos, o naufrágio. Para evitar tais acidentes, é essencial contar com sistemas de detecção e alarme confiáveis, bem como com medidas preventivas adequadas. A automação, nesse contexto, representa uma ferramenta poderosa para garantir a segurança e a integridade das embarcações, além de otimizar as operações a bordo.
