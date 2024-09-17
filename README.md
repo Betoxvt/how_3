@@ -13,6 +13,7 @@ A entrada de água nos porões de uma embarcação pode ter consequências grave
 
 ## Solução
 Para solucionar o problema da entrada de água em porões de embarcações, foi projetado um sistema automático de bombeamento prático e eficiente. A utilização de dois tipos de sensores, digital e analógico, em conjunto com um algoritmo robusto, garante a detecção precisa do nível da água e o acionamento rápido da bomba, minimizando os riscos de danos à embarcação. A solução proposta utiliza uma estratégia de redundância de sensores, para detectar com precisão o nível da água e garantir o funcionamento contínuo da bomba e do sistema de alerta de problemas, mesmo em situações críticas.
+
 O coração desse sistema é o microcontrolador Arduino, que garante a confiabilidade e a robustez da operação. Ele processa os dados dos sensores em tempo real, tomando decisões rápidas e precisas para acionar a bomba quando necessário. Além disso, o Arduino é conhecido por sua resistência a ambientes hostis, o que o torna ideal para aplicações marítimas.
 
 ## Projeto
@@ -22,23 +23,27 @@ Para criar o protótipo do projeto foi utilizado o simulador TinkerCad (www.tink
 
 1. Circuitos:
 Para montar os circuitos foi utilizada uma placa de ensaio assim as conexões dos pinos, cabos e componentes ficou mais organizada. Algumas adaptações foram feitas no simulador por causa do limite de componentes disponíveis, para a bateria 12v uma fonte ajustada para 12v e 5a e para o sensor de boia o sensor flex foi utilizado.
+
 A alimentação da bomba de porão, para ser eficaz, é feita por um relé ligado à bateria que passa a energia para a bomba quando acionado pelo sinal do Arduino.
 
-2. Lógica e código do programa:
+3. Lógica e código do programa:
 Após a visualização de como seria o desenho do sistema, seus componentes, disposição e conexões o protótipo ficou mais tangível e o próximo passo foi de escrever a lógica para o controlador. O código foi desenvolvido em linguagem Python e testado, até chegar ao refinamento necessário para que os sistemas fossem acionados e parados conforme a ideia inicial, também priorizando acionar e manter os subsistemas funcionando mesmo se apenas um dos sinais dos sensores estiver marcando o limite definido.
+
 Este código foi transcrito manualmente para o simulador que usa linguagem C++, através da ferramenta de código em blocos do TinkerCad. Realmente uma ferramenta muito prática que permite os usuários escreverem o código sem saber C++.
 Com o código já inserido no simulador, alguns testes e ajustes foram realizados para conseguir o sinal intermitente do alerta, adicionando pausas com o bloco WAIT 1 sec.
 
-3. Calibração:
+4. Calibração:
 Com a estrutura lógica e os componentes em ordem, foram executados vários testes, observando as impressões do monitor serial para chegar ao resultado satisfatório para este primeiro protótipo. Os limites definidos para cada sensor foram armazenados em constantes no código do arduino. Para o sensor ultrassônico de distância, estabelecendo acionar o alerta em 120cm, parar o alerta em 150cm, acionar a bomba em 150cm e parar a bomba em 190cm. Para o sensor flex ficaram definidas acionar o alerta em 930, parar o alerta em 880, acionar a bomba em 880 e parar a bomba em 770. No código estes valores podem ser alterados conforme a embarcação.
 
-4. Simulador 
+5. Simulador 
 
 [Link para acessar o protótipo no simulador](https://www.tinkercad.com/things/4ZVEsjVhmGu-sistema-automatico-com-alerta )
 
 ## Considerações Finais 
 
 Durante o desenvolvimento deste projeto pude aprender, de maneira introdutória, sobre a automação utilizando o Arduino. Apesar de usar apenas uma simulação no TinkerCAD pude entender mais sobre a programação e circuitos para um sistema automático com sensores e atuadores.
+
 Apesar de basicamente o projeto funcionar, acredito que seria necessário algum sistema de amortecimento para as medições, pois com o balançar do barco o nível da água no porão certamente sofrerá oscilações e, portanto, afetará o funcionamento do sistema.
+
 E finalmente, dependendo das luzes e dos autofalantes utilizados no sistema de alerta, uma alimentação ligada a bateria do barco e acionada por relé pode ser necessária. Usaria o mesmo método que foi apresentado para a bomba de porão.
 No futuro pode-se estudar outras funções para o sistema, como envio de sinal de S.O.S automático ou de monitoramento via internet por satélite, podendo ter a localização GPS integrada. 
